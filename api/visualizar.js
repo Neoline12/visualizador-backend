@@ -14,6 +14,12 @@ export default async function handler(req) {
     const form = await req.formData();
     const piso = form.get("floor");
 
+const prompt = `
+Substitua o piso deste ambiente por um piso vinílico com textura visual semelhante à imagem nesta URL: ${piso}.
+Preserve móveis, paredes, iluminação e ângulo original da foto. A aplicação deve parecer realista, como uma reforma concluída com o novo piso instalado.
+Fotografia interna, iluminação natural. Detalhes em alta definição.
+`;
+
     const response = await openai.images.generate({
       prompt: `Fotografia realista de um piso vinílico estilo ${piso} em um ambiente interno.`,
       n: 1,
